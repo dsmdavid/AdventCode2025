@@ -1,0 +1,18 @@
+2025-12-01 14:15:09,837 - __main__ - ERROR - retrieve_cookie - AOC_SESSION env variable missing, should contain the session cookie
+2025-12-01 14:22:12,863 - __main__ - DEBUG - download_input - Configured to run as year: 2025 and day: 1
+2025-12-01 14:22:13,175 - __main__ - INFO - valid_status - Valid response obtained
+2025-12-01 14:22:13,175 - __main__ - DEBUG - valid_status - L40
+R27
+R20
+R12
+R28
+L9
+R31
+R45
+L19
+R2
+L25
+L46
+R1
+R...
+2025-12-01 14:22:13,175 - __main__ - INFO - download_input - Input saved to ./inputs/2025__1.txt
