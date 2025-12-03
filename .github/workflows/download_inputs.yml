@@ -4,9 +4,14 @@ on:
     - cron: '5 4 1-25 12 *'                      # from the 1. December till 25. December (avoid load at full hours)
     
   workflow_dispatch:                             # allow to manually start the workflow 
-  
+
 jobs:
   download:
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      contents: write
+
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v5
@@ -34,7 +39,8 @@ jobs:
           export AOC_USER_AGENT=${{ secrets.AOC_USER_AGENT }}
           uv run python utils/download_input.py
     
-    - uses: stefanzweifel/git-auto-commit-action@v4     # Step that pushes these local changes back to your github repo
+    - uses: stefanzweifel/git-auto-commit-action@v7 # Step that pushes these local changes back to your github repo
       with:
         commit_message: download daily input
+        file_pattern: 'inputs/**'
         
