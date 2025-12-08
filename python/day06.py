@@ -47,37 +47,32 @@ for group in range(0,len(operations)):
             tmp = tmp + item[group]
     ans1 += tmp
 print('part 1\t',ans1)
+
 # part2
 # ops symbol in first column of numbers
-
 ops = list(input_to_use[-1])
-# print(ops)
 ops_map = dict()
 for i in range(0,len(ops)):
     if ops[i].strip():
         ops_map[i] = {'op':ops[i]}
-# print(ops_map)
-
+# get the range for each group
 ops_keys = list(ops_map.keys())
 ops_keys.sort()
-# print(ops_keys)
 ops_keys.append(len(ops)+2)
-# print(ops_keys)
 for i in range(0, len(ops_keys)-1):
     ops_map[ops_keys[i]]['next'] = ops_keys[i+1]
-# print(ops_map)
-# print('assignment')
+
+# retrieve the numbers for each problem
 members2 = input_to_use[:-1]
 for item in ops_map.keys():
     ops_map[item]['values'] = []
     for member in members2:
+        # get raw values as they are
         ops_map[item]['values'].append(list(member[item:ops_map[item]['next']-1]))
+    # transpose to get rigth order
     ops_map[item]['transposed'] =list(zip(*ops_map[item]['values'][::-1]))
+    # reverse the numbers
     ops_map[item]['numbers'] = [ int(''.join(list(reversed(mb)))) for mb in ops_map[item]['transposed']]
-# print(ops_map)
-# print(ops_map[0]['values'])
-# print(ops_map[0]['transposed'])
-# print(ops_map[0]['numbers'])
 
 ans2 = 0
 for k,v in ops_map.items():
